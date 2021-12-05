@@ -17,20 +17,32 @@ const diagnose = (arr) => {
 console.log(diagnose(arr2));
 
 
-const diagnose2 = (arr) => {
-  const len = arr[0].length;
-  const count = new Array(len).fill(0); // array of 0s
+const oxy = (arr) => {
   let i = 0;
-  while (arr.length > 1) {
-    let half = arr.length/2;
-    keep = Math.floor((arr.reduce((acc, value) => parseInt(value[i]) + acc, 0 )) /half);
-    arr = arr.filter( value => vale[i] === keep );
+  let data = [...arr];
+  let half, keep;
+  while (data.length > 1) {
+    half = Math.round(data.length/2);
+    keep = Math.floor((data.reduce((acc, value) => parseInt(value[i]) + acc, 0 )) /half);
+    data = data.filter( value => value[i] === `${keep}` );
     i++
   }
-  
-  const epsilon = gamma.map( x => x === 0 ? 1 : 0 );
-  // return [parseInt(gamma.join(""), 2), parseInt(epsilon.join(""), 2)];
-  return parseInt(gamma.join(""), 2) * parseInt(epsilon.join(""), 2);
+  return data[0];
 }
 
-console.log(diagnose(arr2));
+const co2 = (arr) => {
+  let i = 0;
+  let data = [...arr];
+  let half, keep;
+  while (data.length > 1) {
+    half = Math.round(data.length/2);
+    keep = Math.floor((data.reduce((acc, value) => parseInt(value[i]) + acc, 0 )) /half);
+    data = data.filter( value => value[i] !== `${keep}` );
+    i++
+  }
+  return data[0];
+}
+
+const diagnose2 = (arr) =>  parseInt(oxy(arr), 2) * parseInt(co2(arr), 2);
+
+console.log(diagnose2(arr2));
